@@ -21,7 +21,7 @@ class Utilisateur extends Authenticatable
         'nom',
         'email',
         'password',
-        'type',
+        'role_id',
         'statut',
     ];
 
@@ -58,13 +58,13 @@ class Utilisateur extends Authenticatable
 
 
   
-    // public function commandes()
-    // {
-    //     return $this->hasMany(Commande::class, 'id_utilisateur');
-    // }
+    public function commandes()
+    {
+        return $this->hasMany(Commande::class, 'id_utilisateur');
+    }
 
-    // public function commentaires()
-    // {
-    //     return $this->hasMany(Commentaire::class, 'id_utilisateur');
-    // }
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class, 'id_utilisateur');
+    }
 }

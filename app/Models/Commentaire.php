@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Commentaire extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['idProduit', 'idUtilisateur', 'contenu', 'dateCommentaire'];
+
 }
