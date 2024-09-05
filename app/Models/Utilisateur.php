@@ -48,13 +48,13 @@ class Utilisateur extends Authenticatable
 
     
 // constructeur utilisateur
-    public function __construct($nom, $email, $password)
-    {
-        $this->nom = $nom;
-        $this->email = $email;
-        $this->password = $password;
-        $this->statut = 'active';
-    }
+    // public function __construct($nom, $email, $password)
+    // {
+    //     $this->nom = $nom;
+    //     $this->email = $email;
+    //     $this->password = $password;
+    //     $this->statut = 'active';
+    // }
 
 
   
