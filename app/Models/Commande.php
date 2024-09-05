@@ -9,6 +9,24 @@ class Commande extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['idUtilisateur', 'dateCommande', 'etat'];
+    // protected $table = 'commandes';
+
+
+    protected $primaryKey = 'idCommande';
+
+    protected $fillable = [
+        'idCommande', 
+        'dateCommande',
+        'idClient',
+        'montantCommande',
+        'MethodePaiement',
+        'DateLivraison',
+        'Adresse',
+        'Telephone',
+        'isPaid',
+        'deliverTo',
+        'numCommande', 
+        'etat'
+    ];
 
 }

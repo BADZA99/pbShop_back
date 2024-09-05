@@ -9,6 +9,6 @@ class DetailsCommande extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['idCommande', 'idProduit', 'Prixunitaire', 'quantiteProduit'];
+    protected $fillable = ['idCommande', 'idProduit', 'Prixunitaire', 'quantiteProduit', 'total'];
 
 }
