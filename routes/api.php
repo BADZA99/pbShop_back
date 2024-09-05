@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategorieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,14 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('user',[AuthController::class, 'user']);
     Route::post('logout',[AuthController::class, 'logout']);
 });
+
+// route pour crud categorie
+Route::post('addCategorie', [CategorieController::class, 'addCategorie']);
+Route::get('getCategorie', [CategorieController::class, 'getCategorie']);
+Route::put('updateCategorie/{id}', [CategorieController::class, 'updateCategorie']);
+Route::delete('deleteCategorie/{id}', [CategorieController::class, 'deleteCategorie']);
+
+
 
 
 

@@ -31,20 +31,34 @@ class CategorieController extends Controller
 
     public function updateCategorie(Request $request, $id)
     {
+        // verifier si l'id existe
         $categorie = Categorie::find($id);
-        $categorie->update([
-            'NomCat' => $request->NomCat,
-        ]);
-        return response()->json([
-            'message' => 'Categorie updated successfully',
-            'categorie' => $categorie
-        ]);
+        if (!$categorie) {
+            return response()->json([
+                'message' => 'Categorie not found'
+            ]);
+        }else{
+            $categorie->update([
+                'NomCat' => $request->NomCat,
+            ]);
+            return response()->json([
+                'message' => 'Categorie updated successfully',
+                'categorie' => $categorie
+            ]);
+        }
     }
 
     // delete
     public function deleteCategorie($id)
     {
         $categorie = Categorie::find($id);
+
+        if (!$categorie) {
+            return response()->json([
+                'message' => 'Categorie not found'
+            ]);
+        }
+       
         $categorie->delete();
         return response()->json([
             'message' => 'Categorie deleted successfully',
