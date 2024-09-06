@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ProduitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,12 @@ Route::delete('deleteProduit/{id}', [ProduitController::class, 'deleteProduit'])
 Route::get('ProduitByCategorie/{id}', [ProduitController::class, 'getProduitByCategorie']);
 Route::put('updateStock/{id}', [ProduitController::class, 'updateStock']);
 
+// routes pour commentaire
+Route::post('addCommentaire', [CommentaireController::class, 'addCommentaire']);
+Route::get('getCommentaires', [CommentaireController::class, 'getCommentaires']);
+Route::put('updateCommentaire/{id}', [CommentaireController::class, 'updateCommentaire']);
+Route::delete('deleteCommentaire/{id}', [CommentaireController::class, 'deleteCommentaire']);
+Route::get('CommentaireByProduit/{id}', [CommentaireController::class, 'getCommentaireByProduit']);
 
 
 
