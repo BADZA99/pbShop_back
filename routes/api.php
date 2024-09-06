@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\ProduitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,15 @@ Route::put('updateCommande/{id}', [CommandeController::class, 'updateCommande'])
 Route::delete('deleteCommande/{id}', [CommandeController::class, 'deleteCommande']);
 Route::put('annulerCommande/{id}', [CommandeController::class, 'annulerCommande']);
 Route::put('validerCommande/{id}', [CommandeController::class, 'validerCommande']);
+
+// route pour produit
+Route::post('addProduit', [ProduitController::class, 'addProduit']);
+Route::get('getProduits', [ProduitController::class, 'getProduits']);
+Route::put('updateProduit/{id}', [ProduitController::class, 'updateProduit']);
+Route::delete('deleteProduit/{id}', [ProduitController::class, 'deleteProduit']);
+Route::get('ProduitByCategorie/{id}', [ProduitController::class, 'getProduitByCategorie']);
+Route::put('updateStock/{id}', [ProduitController::class, 'updateStock']);
+
 
 
 
