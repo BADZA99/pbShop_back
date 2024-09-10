@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\DetailsCommandeController;
 use App\Http\Controllers\ProduitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,14 @@ Route::put('updateCommande/{id}', [CommandeController::class, 'updateCommande'])
 Route::delete('deleteCommande/{id}', [CommandeController::class, 'deleteCommande']);
 Route::put('annulerCommande/{id}', [CommandeController::class, 'annulerCommande']);
 Route::put('validerCommande/{id}', [CommandeController::class, 'validerCommande']);
+
+// routespour detailscommande
+Route::post('addDetailsCommande', [DetailsCommandeController::class, 'addDetailsCommande']);
+Route::get('getDetailsCommande', [DetailsCommandeController::class, 'getDetailsCommande']);
+// Route::put('updateDetailsCommande/{id}', [DetailsCommandeController::class, 'updateDetailsCommande']);
+Route::delete('deleteDetailsCommande/{id}', [DetailsCommandeController::class, 'deleteDetailsCommande']);
+Route::get('getDetailsCommandeByCommandeId/{id}', [DetailsCommandeController::class, 'getDetailsCommandeByCommandeId']);
+
 
 // route pour produit
 Route::post('addProduit', [ProduitController::class, 'addProduit']);
