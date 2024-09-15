@@ -23,6 +23,8 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_id' => $request->role_id,
+            // telephone
+            'telephone' => $request->telephone,
             'statut' => 'active',
         ]);
 
@@ -42,10 +44,10 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+        // $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required'
+        // ]);
 
         $user = Utilisateur::where('email', $request->email)->first();
 
@@ -58,40 +60,47 @@ class AuthController extends Controller
 
         $cookie = cookie('jwt', $token, 60 * 24); // 1 day
 
-        return response()->json(['message' => 'Login successful', 'token' => $token], Response::HTTP_OK)->withCookie($cookie);
+        return response()->json(['message' => 'Login successful', 'token' => $token
+        , 'role_id' => $user->role_id
+        
+    ], Response::HTTP_OK)->withCookie($cookie);
     }
 
 
 
     // user
     public function user(Request $request)
-    {     
-        if ($request->user()) {
-            return $request->user();
-        } else {
-            return response()->json(['message' => 'user not found'], Response::HTTP_NOT_FOUND);
-        
-        }
+    {
+        // if ($request->user()) {
+        //     return $request->user();
+        // } else {
+        //     return response()->json(['message' => 'user not found'], Response::HTTP_NOT_FOUND);
+
+        // }
+        return $request->user();
                
        
         
     }
 
 
-
-
-    //logout
-
     public function Logout()
     {
         $cookie = Cookie::forget('jwt');
-        if ($cookie) {
-            return response()->json(['message' => 'logout successfull'], Response::HTTP_OK)->withCookie($cookie);
-        } else {
-            return response()->json(['message' => 'logout failed'], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-        
+        return \response([
+            'message' => 'logout successfully'
+        ])->withCookie($cookie);
     }
+
+    // tous les users
+    public function getUsers()
+    {
+        $users = Utilisateur::all();
+        return response()->json([
+            'users' => $users
+        ]);
+    }
+
 
 }
 

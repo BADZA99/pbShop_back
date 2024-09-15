@@ -26,17 +26,23 @@ Route::post('login', [AuthController::class, 'login']);
 // middleware auth:sanctum
 Route::middleware('auth:sanctum')->group(function (){
     Route::get('user',[AuthController::class, 'user']);
-    Route::post('logout',[AuthController::class, 'logout']);
+    Route::get('logout',[AuthController::class, 'Logout']);
     Route::post('loggedUserCommandes',[CommandeController::class, 'userCommandes']);
    
 
 });
 
+// utilisateurs
+Route::post('addUser', [AuthController::class, 'addUser']);
+Route::get('getUsers', [AuthController::class, 'getUsers']);
+
+
 // route pour crud categorie
 Route::post('addCategorie', [CategorieController::class, 'addCategorie']);
-Route::get('getCategorie', [CategorieController::class, 'getCategorie']);
+Route::get('getCategories', [CategorieController::class, 'getCategories']);
 Route::put('updateCategorie/{id}', [CategorieController::class, 'updateCategorie']);
 Route::delete('deleteCategorie/{id}', [CategorieController::class, 'deleteCategorie']);
+
 
 // route pour commandes
 Route::post('addCommande', [CommandeController::class, 'addCommande']);

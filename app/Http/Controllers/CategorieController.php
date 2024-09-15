@@ -21,11 +21,11 @@ class CategorieController extends Controller
         ]);
     }
 
-    public function getCategorie()
+    public function getCategories()
     {
-        $categorie = Categorie::all();
+        $categories = Categorie::all();
         return response()->json([
-            'categorie' => $categorie
+            'categories' => $categories
         ]);
     }
 
