@@ -20,7 +20,8 @@ class Produit extends Model
         'Seuil',
         'PrixAchat',
         'Stock',
-        'idCat'
+        'idCat',
+        'dateExp'
     ];
     // relation avec la table categories
     public function categorie()

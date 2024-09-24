@@ -12,23 +12,33 @@ class ProduitController extends Controller
 
     public function addProduit(Request $request)
     {
+        if ($request->hasFile('image')) {
+            $photo = $request->file('image');
+            $extension = $photo->getClientOriginalExtension();
+            $photoName = time() . '.' . $extension;
+            $photo->move('photos_produits', $photoName);
+        } else {
+            $photoName = null;
+        }
         $produit = Produit::create([
             'LibelleProduit' => $request->LibelleProduit,
             // generer le  CodeProduit 
             'CodeProduit' => 'PROD' . rand(1000, 9999),
             'description' => $request->description,
             'prixVente' => $request->prixVente,
-            'image' => $request->image,
+            'image' => $photoName,
             'Seuil' => $request->Seuil,
             'PrixAchat' => $request->PrixAchat,
             'Stock' => $request->Stock,
             'idCat' => $request->idCat,
+            // dateExp
+            'dateExp' => $request->dateExp
         ]);
 
         return response()->json([
             'message' => 'Produit created successfully',
             'produit' => $produit
-        ]);
+        ],201);
     }
 
     public function getProduits()
@@ -49,12 +59,21 @@ class ProduitController extends Controller
             ], 404);
         }
 
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $extension = $photo->getClientOriginalExtension();
+            $photoName = time() . '.' . $extension;
+            $photo->move('photos_produits', $photoName);
+        } else {
+            $photoName = null;
+        }
+
         $produit->update([
             'LibelleProduit' => $request->LibelleProduit,
             // 'CodeProduit' => $request->CodeProduit,
             'description' => $request->description,
             'prixVente' => $request->prixVente,
-            'image' => $request->image,
+            'image' => $photoName,
             'Seuil' => $request->Seuil,
             'PrixAchat' => $request->PrixAchat,
             'Stock' => $request->Stock,
